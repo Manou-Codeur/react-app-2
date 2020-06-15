@@ -16,7 +16,19 @@ class App extends Component {
   }
 
   handleIncrement = e => {
-    
+    //init some data and selector
+    let _id = e.target.parentNode.id;
+    let elsArrCopy = [...this.state.elsArr];
+    let index = elsArrCopy.findIndex(el => el.id === parseInt(_id));
+    //update the card value
+    if (this.state.elsArr[index].val === 0) {
+      this.setState({numberOfEls: this.state.numberOfEls + 1});
+    }
+    //add val property
+    elsArrCopy[index].val += 1;
+    this.setState({elsArr: elsArrCopy});
+    //update the style of the decrement btn
+    if (this.state.elsArr[index].val > 0) e.target.nextElementSibling.className = "controls gray";
   }
 
   handleDelete = e => {
