@@ -1,12 +1,23 @@
-import React from 'react';
+import React, { Component } from 'react';
+import NavBar from "./components/Nav-bar";
+import Main from "./components/Main";
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <h1>hello world</h1>
-    </div>
-  );
-}
+class App extends Component {
 
+  state = {
+    Qt: 0
+  }
+
+
+  render() { 
+    return ( 
+      <React.Fragment>
+        <NavBar/>
+        <Main qte={this.state.Qt} />
+      </React.Fragment>
+     );
+  }
+}
+ 
 export default App;
