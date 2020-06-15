@@ -28,7 +28,7 @@ class App extends Component {
     elsArrCopy[index].val += 1;
     this.setState({elsArr: elsArrCopy});
     //update the style of the decrement btn
-    if (this.state.elsArr[index].val > 0) e.target.nextElementSibling.className = "controls gray";
+    if (this.state.elsArr[index].val > 0) e.target.nextElementSibling.className = "controls gray minus";
   }
 
   handleDelete = e => {
@@ -47,15 +47,27 @@ class App extends Component {
       //update the card value 
       if (this.state.elsArr[index].val === 0) {
         this.setState({numberOfEls: this.state.numberOfEls - 1});
-        e.target.className = "controls lithGray";
+        e.target.className = "controls lithGray minus";
       }
     }
 
   }
 
   handleReset = () => {
-   
+    //init
+    let elsArrCopy = [...this.state.elsArr];
+    //reset the val property
+    for (let els of elsArrCopy) {
+      els.val = 0;
+    }
+    this.setState({elsArr: elsArrCopy, numberOfEls: 0});
+    //update the style
+    let all = document.querySelectorAll(".minus");
+    for (let els of all) {
+      els.className = "controls lithGray minus"
+    }
   }
+
 
   render() { 
     return ( 
