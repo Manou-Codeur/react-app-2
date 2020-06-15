@@ -32,7 +32,17 @@ class App extends Component {
   }
 
   handleDelete = e => {
-    
+    //init some data and selector
+    let _id = e.target.parentNode.id;
+    let elsArrCopy = [...this.state.elsArr];
+    let index = elsArrCopy.findIndex(el => el.id === parseInt(_id));
+    //delete the item from the state
+    elsArrCopy.splice(index, 1);
+    this.setState({elsArr: elsArrCopy})
+    //update the card value
+    if (this.state.elsArr[index].val > 0) {
+      this.setState({numberOfEls: this.state.numberOfEls - 1})
+    }
   }
 
   handleDecrement = e => {
